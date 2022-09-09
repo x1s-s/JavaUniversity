@@ -27,11 +27,11 @@ public class RegexUtils {
   }
 
   public static boolean isDate(String str){
-    String DATE_PATTERN = "^(29/02/(2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26])))$"
+    String dateRegex = "^(29/02/(2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26])))$"
         + "|^(((0[1-9]|1[0-9]|2[0-8])-02-(19|2[0-9])[0-9]{2}))$"
         + "|^((0[1-9]|[12][0-9]|3[01])/(0[13578]|10|12)/((19|2[0-9])[0-9]{2}))$"
         + "|^(((0[1-9]|[12][0-9]|30)/(0[469]|11)/(19|2[0-9])[0-9]{2}))$";// ебал я рот вашу дату) (без негатива)
-    return  Pattern.compile(DATE_PATTERN).matcher(str).find();
+    return  Pattern.compile(dateRegex).matcher(str).find();
   }
   public static boolean isEmail(String str){
     return  Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$").matcher(str).find();
