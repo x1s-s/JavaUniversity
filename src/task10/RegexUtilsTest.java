@@ -1,6 +1,5 @@
 package task10;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static task10.RegexUtils.isDate;
 import static task10.RegexUtils.isEmail;
 import static task10.RegexUtils.isGUID;
