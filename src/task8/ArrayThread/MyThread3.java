@@ -1,5 +1,6 @@
 package task8.ArrayThread;
 
+import static task2.ArrayTask.Runner.createRandomArray;
 import static task2.ArrayTask.Runner.numberOfTrue;
 
 import java.util.Arrays;
@@ -22,11 +23,7 @@ public class MyThread3 implements Runnable{
       System.out.println(threadProc2.getName() + "is interrupted");
     }
     System.out.println("Поток 3 начал выполнение");
-    int[] array = new int[arraySize];
-    Random random = new Random();
-    for (int i = 0; i < arraySize; i++) {
-      array[i] = random.nextInt(100);
-    }
+    int[] array = createRandomArray(arraySize);
     System.out.println(Arrays.toString(array));
     System.out.println(numberOfTrue(array));
     System.out.println("Поток 3 закончил выполнение");
