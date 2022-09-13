@@ -58,11 +58,14 @@ public class GetBook {
     this.returnDate = returnDate;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    book.fill();
-    reader.fill();
-    worker.fill();
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
+    book.fill(scanner);
+    reader.fill(scanner);
+    worker.fill(scanner);
     pickupDate = new Date(scanner.nextInt());
     returnDate = new Date(scanner.nextInt());
   }

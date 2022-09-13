@@ -3,7 +3,7 @@ package task3.progressed;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Book implements Interface{
+public class Book implements InputOutput {
   private Author author;
   private Genre genre;
   private PublishingHouse publishingHouse;
@@ -60,18 +60,17 @@ public class Book implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    author.fill();
-    publishingHouse.fill();
-    genre.fill();
-    name = scanner.nextLine();
-    creationDate = new Date(scanner.nextInt());
+  public void output(){
+    System.out.println(this);
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void fill(Scanner scanner){
+    author.fill(scanner);
+    publishingHouse.fill(scanner);
+    genre.fill(scanner);
+    name = scanner.nextLine();
+    creationDate = new Date(scanner.nextInt());
   }
 
   @Override

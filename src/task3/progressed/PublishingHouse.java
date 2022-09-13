@@ -2,7 +2,7 @@ package task3.progressed;
 
 import java.util.Scanner;
 
-public class PublishingHouse implements Interface{
+public class PublishingHouse implements InputOutput {
   private String name;
   private String address;
 
@@ -28,15 +28,14 @@ public class PublishingHouse implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void fill(Scanner scanner){
     name = scanner.nextLine();
     address = scanner.nextLine();
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override

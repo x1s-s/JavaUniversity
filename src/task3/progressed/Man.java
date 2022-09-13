@@ -1,6 +1,8 @@
 package task3.progressed;
 
-public abstract class Man {
+import java.util.Scanner;
+
+public abstract class Man implements InputOutput {
   private String FIO;
   private String address;
   private String phoneNumber;
@@ -36,6 +38,18 @@ public abstract class Man {
   }
 
   public abstract void voice();
+
+  @Override
+  public void fill(Scanner scanner) {
+    FIO = scanner.nextLine();
+    address = scanner.nextLine();
+    phoneNumber = scanner.nextLine();
+  }
+
+  @Override
+  public void output() {
+    System.out.println(this);
+  }
 
   @Override
   public String toString() {

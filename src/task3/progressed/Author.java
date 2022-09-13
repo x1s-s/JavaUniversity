@@ -3,7 +3,7 @@ package task3.progressed;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Author implements Interface {
+public class Author implements InputOutput {
   String FIO;
   Date birthDate;
   String country;
@@ -39,17 +39,17 @@ public class Author implements Interface {
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void output(){
+    System.out.println(this);
+  }
+
+  @Override
+  public void fill(Scanner scanner){
     FIO = scanner.nextLine();
     birthDate = new Date(scanner.nextInt());
     country = scanner.nextLine();
   }
 
-  @Override
-  public void getFromDB(){
-    System.out.println("No data base");
-  }
 
   @Override
   public String toString() {

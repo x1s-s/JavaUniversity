@@ -14,10 +14,10 @@ import java.util.Scanner;
 public class Runner {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    int n = 0;
+    int n;
     do {
       n = scanner.nextInt();
-    } while(n < 0);
+    } while(n <= 0);
     int[][] matrix = new int[n][];
     for (int i = 0; i < matrix.length; i++) {
       matrix[i] = createRandomArray(n);
@@ -55,11 +55,11 @@ public class Runner {
     int number = 0;
     for (int i = 0; i < matrix.length; i++) {
       int k = 0;
-      for (int j = 0; j < matrix.length; j++) {
-        if(matrix[j][i] > 0){
+      for (int[] ints : matrix) {
+        if (ints[i] > 0) {
           k++;
         }
-        if(matrix[j][i] == 0){
+        if (ints[i] == 0) {
           k--;
         }
       }

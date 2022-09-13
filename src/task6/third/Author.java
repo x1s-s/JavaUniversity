@@ -1,5 +1,8 @@
-package task3.create;
+package task6.third;
 
+import task6.third.Author;
+import task6.third.MenuException;
+import task6.third.Collection;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -7,6 +10,15 @@ public class Author {
   String FIO;
   Date birthDate;
   String country;
+
+  public Author(String str1, String str2, String str3) {
+    str1 = str1.substring(4);
+    str2 = str2.substring(10);
+    str3 = str3.substring(8);
+    FIO = str1;
+    birthDate = new Date(Integer.parseInt(str2));
+    country = str3;
+  }
 
   public Author(String FIO, Date birthDate, String country) {
     this.FIO = FIO;
@@ -36,10 +48,6 @@ public class Author {
 
   public void setCountry(String country) {
     this.country = country;
-  }
-
-  public void output(){
-    System.out.println(this);
   }
 
   public void fill(Scanner scanner){

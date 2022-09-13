@@ -58,10 +58,13 @@ public class Worker {
     this.phoneNumber = phoneNumber;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    readerHall.fill();
-    position.fill();
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
+    readerHall.fill(scanner);
+    position.fill(scanner);
     FIO = scanner.nextLine();
     Address = scanner.nextLine();
     phoneNumber = scanner.nextLine();

@@ -3,7 +3,7 @@ package task3.progressed;
 import java.util.Date;
 import java.util.Scanner;
 
-public class BookingBook implements Interface{
+public class BookingBook implements InputOutput {
   private Book book;
   private Reader reader;
   private Date startDay;
@@ -49,17 +49,16 @@ public class BookingBook implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    book.fill();
-    reader.fill();
+  public void fill(Scanner scanner){
+    book.fill(scanner);
+    reader.fill(scanner);
     startDay = new Date(scanner.nextInt());
     endDay = new Date(scanner.nextInt());
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override

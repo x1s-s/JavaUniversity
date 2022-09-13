@@ -59,11 +59,14 @@ public class Book {
     this.creationDate = creationDate;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    author.fill();
-    publishingHouse.fill();
-    genre.fill();
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
+    author.fill(scanner);
+    publishingHouse.fill(scanner);
+    genre.fill(scanner);
     name = scanner.nextLine();
     creationDate = new Date(scanner.nextInt());
   }

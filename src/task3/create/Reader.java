@@ -37,8 +37,11 @@ public class Reader {
     this.address = address;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
     FIO = scanner.nextLine();
     phoneNumber = scanner.nextLine();
     address = scanner.nextLine();

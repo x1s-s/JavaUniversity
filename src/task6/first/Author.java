@@ -1,4 +1,4 @@
-package task3.create;
+package task6.first;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -36,10 +36,6 @@ public class Author {
 
   public void setCountry(String country) {
     this.country = country;
-  }
-
-  public void output(){
-    System.out.println(this);
   }
 
   public void fill(Scanner scanner){

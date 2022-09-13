@@ -26,7 +26,7 @@ public class Runner {
     Random random = new Random();
     int[] array = new int[n];
     for (int i = 0; i < array.length; i++) {
-      array[i] = random.nextInt();
+      array[i] = random.nextInt(100) - 50;
     }
     return array;
   }
@@ -35,11 +35,11 @@ public class Runner {
     int number = 0;
     for (int i = 1; i < array.length; i++) {
       if(array[i] == 0){
-        if(array[i - 1] == 0 && array[i] == 0){
+        if(array[i - 1] != 0){
           number++;
         }
       } else {
-        if((array[i - 1] < 0 && array[i] < 0) || (array[i - 1] > 0 && array[i] > 0)){
+        if(array[i - 1] * array[i] < 0){
           number++;
         }
       }

@@ -2,7 +2,7 @@ package task3.progressed;
 
 import java.util.Scanner;
 
-public class Worker extends Man implements Interface{
+public class Worker extends Man implements InputOutput {
   private ReaderHall readerHall;
   private Position position;
 
@@ -31,22 +31,19 @@ public class Worker extends Man implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    readerHall.fill();
+  public void fill(Scanner scanner){
+    super.fill(scanner);
+    readerHall.fill(scanner);
     switch (scanner.nextInt()){
       case 1 -> position = Position.DIRECTOR;
       case 2 -> position = Position.CHIEFLIBERIAN;
       case 3 -> position = Position.LIBERIAN;
     }
-    setFIO(scanner.nextLine());
-    setAddress(scanner.nextLine());
-    setPhoneNumber(scanner.nextLine());
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override

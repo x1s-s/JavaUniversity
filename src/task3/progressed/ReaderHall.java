@@ -2,7 +2,7 @@ package task3.progressed;
 
 import java.util.Scanner;
 
-public class ReaderHall implements Interface{
+public class ReaderHall implements InputOutput {
   private String name;
   private String theme;
   private int numberOfPlace;
@@ -38,16 +38,15 @@ public class ReaderHall implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void fill(Scanner scanner){
     name = scanner.nextLine();
     theme = scanner.nextLine();
     numberOfPlace = scanner.nextInt();
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override

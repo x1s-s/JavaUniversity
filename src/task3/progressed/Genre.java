@@ -2,7 +2,7 @@ package task3.progressed;
 
 import java.util.Scanner;
 
-public class Genre implements Interface{
+public class Genre implements InputOutput {
   private String name;
 
   public Genre(String name) {
@@ -18,14 +18,13 @@ public class Genre implements Interface{
   }
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void fill(Scanner scanner){
     name = scanner.nextLine();
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override

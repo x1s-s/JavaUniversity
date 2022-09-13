@@ -27,8 +27,11 @@ public class PublishingHouse {
     this.address = address;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
     name = scanner.nextLine();
     address = scanner.nextLine();
   }

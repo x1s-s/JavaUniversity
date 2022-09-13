@@ -48,10 +48,13 @@ public class BookingBook {
     this.endDay = endDay;
   }
 
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    book.fill();
-    reader.fill();
+  public void output(){
+    System.out.println(this);
+  }
+
+  public void fill(Scanner scanner){
+    book.fill(scanner);
+    reader.fill(scanner);
     startDay = new Date(scanner.nextInt());
     endDay = new Date(scanner.nextInt());
   }

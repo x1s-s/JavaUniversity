@@ -2,7 +2,7 @@ package task3.progressed;
 
 import java.util.Scanner;
 
-public class Reader extends Man implements Interface{
+public class Reader extends Man implements InputOutput {
 
 
   public Reader(String FIO, String phoneNumber, String address) {
@@ -11,16 +11,13 @@ public class Reader extends Man implements Interface{
 
 
   @Override
-  public void fill(){
-    Scanner scanner = new Scanner(System.in);
-    setFIO(scanner.nextLine());
-    setPhoneNumber(scanner.nextLine());
-    setAddress(scanner.nextLine());
+  public void fill(Scanner scanner){
+    super.fill(scanner);
   }
 
   @Override
-  public void getFromDB(){
-    System.out.println("No data base");
+  public void output(){
+    System.out.println(this);
   }
 
   @Override
