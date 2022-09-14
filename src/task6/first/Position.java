@@ -1,6 +1,6 @@
-package task3.progressed;
+package task6.first;
 
-public enum Position{
+public enum Position {
   DIRECTOR(100),
   CHIEFLIBERIAN(75),
   LIBERIAN(50);
