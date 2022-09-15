@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Author {
-  String FIO;
-  Date birthDate;
-  String country;
+  private String FIO;
+  private Date birthDate;
+  private String country;
 
   public Author(String FIO, Date birthDate, String country) {
     this.FIO = FIO;
