@@ -6,7 +6,7 @@ public class Runner {
   public static void main(String[] args) {
     String[] mainMenu = new String[]{"add element","edit element(by index)","delete element(by index)","output all elements","exit"};
     Scanner scanner = new Scanner(System.in);
-    CollectionController collectionController = new CollectionController(new Collection());
+    CollectionController collectionController = new CollectionController(new Collection(), new CollectionView());
     int menuPosition = menu(mainMenu,scanner);
     while(menuPosition != mainMenu.length - 1){
       try {

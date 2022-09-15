@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class CollectionController {
   private Collection collection;
+  private CollectionView collectionView;
 
-  public CollectionController(Collection collection) {
+  public CollectionController(Collection collection,CollectionView collectionView) {
     this.collection = collection;
+    this.collectionView = collectionView;
   }
 
   public void addElement(Scanner scanner){
@@ -39,6 +41,6 @@ public class CollectionController {
   }
 
   public void updateViews(){
-    CollectionView.OutputCollection(collection.getMens());
+    collectionView.OutputCollection(collection.getMens());
   }
 }
