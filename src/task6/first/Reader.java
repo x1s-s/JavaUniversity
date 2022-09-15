@@ -1,9 +1,15 @@
 package task6.first;
 
+import java.util.Scanner;
+
 public class Reader extends Man {
 
   public Reader(){
     super();
+  }
+
+  public Reader(Scanner scanner){
+    this.fill(scanner);
   }
 
   public Reader(String FIO, String phoneNumber, String address) {

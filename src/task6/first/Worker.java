@@ -12,6 +12,10 @@ public class Worker extends Man {
     position = Position.LIBERIAN;
   }
 
+  public Worker(Scanner scanner){
+    this.fill(scanner);
+  }
+
   public Worker(ReaderHall readerHall, Position position, String FIO, String address,
       String phoneNumber) {
     super(FIO,address,phoneNumber);
