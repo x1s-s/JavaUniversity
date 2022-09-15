@@ -45,8 +45,11 @@ public class Author implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("FIO = ");
     FIO = scanner.nextLine();
+    System.out.println("Birthday = ");
     birthDate = new Date(scanner.nextInt());
+    System.out.println("Country =");
     country = scanner.nextLine();
   }
 

@@ -41,8 +41,11 @@ public abstract class Man implements InputOutput {
 
   @Override
   public void fill(Scanner scanner) {
+    System.out.println("FIO = ");
     FIO = scanner.nextLine();
+    System.out.println("Address = ");
     address = scanner.nextLine();
+    System.out.println("Phone number = ");
     phoneNumber = scanner.nextLine();
   }
 

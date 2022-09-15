@@ -1,8 +1,10 @@
 package task3.progressed;
 
+import java.util.Locale;
+
 public enum Position{
   DIRECTOR(100),
-  CHIEFLIBERIAN(75),
+  CHIEF_LIBERIAN(75),
   LIBERIAN(50);
 
   private final int salary;
@@ -18,7 +20,7 @@ public enum Position{
   @Override
   public String toString() {
     return "Position{" +
-        this.name() +
+        this.name().toLowerCase(Locale.ROOT) +
         ", salary=" + salary +
         '}';
   }

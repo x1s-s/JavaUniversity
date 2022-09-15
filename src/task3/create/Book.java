@@ -7,7 +7,7 @@ public class Book {
   private Author author;
   private Genre genre;
   private PublishingHouse publishingHouse;
-  private String name;
+  private String title;
   private Date creationDate;
 
   public Book(Author author, Genre genre, PublishingHouse publishingHouse, String name,
@@ -15,7 +15,7 @@ public class Book {
     this.author = author;
     this.genre = genre;
     this.publishingHouse = publishingHouse;
-    this.name = name;
+    this.title = name;
     this.creationDate = creationDate;
   }
 
@@ -43,12 +43,12 @@ public class Book {
     this.publishingHouse = publishingHouse;
   }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public Date getCreationDate() {
@@ -67,7 +67,7 @@ public class Book {
     author.fill(scanner);
     publishingHouse.fill(scanner);
     genre.fill(scanner);
-    name = scanner.nextLine();
+    title = scanner.nextLine();
     creationDate = new Date(scanner.nextInt());
   }
 
@@ -77,7 +77,7 @@ public class Book {
         "author=" + author +
         ", genre=" + genre +
         ", publishingHouse=" + publishingHouse +
-        ", name='" + name + '\'' +
+        ", name='" + title + '\'' +
         ", creationDate=" + creationDate +
         '}';
   }

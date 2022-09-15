@@ -32,13 +32,12 @@ public class Worker extends Man implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("Man = ");
     super.fill(scanner);
+    System.out.println("Position (DIRECTOR, CHIEFLIBERIAN, LIBERIAN) = ");
+    position = Position.valueOf(scanner.nextLine());
+    System.out.println("Reader hall = ");
     readerHall.fill(scanner);
-    switch (scanner.nextInt()){
-      case 1 -> position = Position.DIRECTOR;
-      case 2 -> position = Position.CHIEFLIBERIAN;
-      case 3 -> position = Position.LIBERIAN;
-    }
   }
 
   @Override

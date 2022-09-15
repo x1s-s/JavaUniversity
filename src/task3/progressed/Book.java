@@ -66,10 +66,15 @@ public class Book implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("Author = ");
     author.fill(scanner);
+    System.out.println("Publishing house = ");
     publishingHouse.fill(scanner);
-    genre.fill(scanner);
+    System.out.println("Genre (FANTASY, SCIENCE_FICTION, DYSTOPIAN, MYSTERY, HORROR)  = ");
+    genre = Genre.valueOf(scanner.nextLine());
+    System.out.println("Name = ");
     name = scanner.nextLine();
+    System.out.println("Creation day =");
     creationDate = new Date(scanner.nextInt());
   }
 

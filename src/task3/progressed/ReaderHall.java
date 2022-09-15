@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class ReaderHall implements InputOutput {
   private String name;
-  private String theme;
+  private Genre genre;
   private int numberOfPlace;
 
-  public ReaderHall(String name, String theme, int numberOfPlace) {
+  public ReaderHall(String name, Genre genre, int numberOfPlace) {
     this.name = name;
-    this.theme = theme;
+    this.genre = genre;
     this.numberOfPlace = numberOfPlace;
   }
 
@@ -21,12 +21,12 @@ public class ReaderHall implements InputOutput {
     this.name = name;
   }
 
-  public String getTheme() {
-    return theme;
+  public Genre getTheme() {
+    return genre;
   }
 
-  public void setTheme(String theme) {
-    this.theme = theme;
+  public void setTheme(Genre genre) {
+    this.genre = genre;
   }
 
   public int getNumberOfPlace() {
@@ -39,8 +39,11 @@ public class ReaderHall implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("Name =");
     name = scanner.nextLine();
-    theme = scanner.nextLine();
+    System.out.println("Genre (FANTASY, SCIENCE_FICTION, DYSTOPIAN, MYSTERY, HORROR)  = ");
+    genre = Genre.valueOf(scanner.nextLine());
+    System.out.println("Number of places = ");
     numberOfPlace = scanner.nextInt();
   }
 
@@ -53,7 +56,7 @@ public class ReaderHall implements InputOutput {
   public String toString() {
     return "ReaderHall{" +
         "name='" + name + '\'' +
-        ", theme='" + theme + '\'' +
+        ", theme='" + genre + '\'' +
         ", numberOfPlace=" + numberOfPlace +
         '}';
   }

@@ -60,10 +60,15 @@ public class GetBook implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("Book = ");
     book.fill(scanner);
+    System.out.println("Reader = ");
     reader.fill(scanner);
+    System.out.println("Worker = ");
     worker.fill(scanner);
+    System.out.println("Pickup date = ");
     pickupDate = new Date(scanner.nextInt());
+    System.out.println("Return date = ");
     returnDate = new Date(scanner.nextInt());
   }
 

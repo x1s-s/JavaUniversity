@@ -29,7 +29,9 @@ public class PublishingHouse implements InputOutput {
 
   @Override
   public void fill(Scanner scanner){
+    System.out.println("Name = ");
     name = scanner.nextLine();
+    System.out.println("Address = ");
     address = scanner.nextLine();
   }
 
