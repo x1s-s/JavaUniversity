@@ -5,8 +5,8 @@ import task3.progressed.Book;
 public class Collection {
   private Book[] books;
 
-  public Collection(){
-    books = new Book[0];
+  public Collection(int n){
+    books = new Book[n];
   }
 
   public Book[] getBooks() {
