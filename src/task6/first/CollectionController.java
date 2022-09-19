@@ -4,8 +4,8 @@ import java.util.Scanner;
 import task3.progressed.Book;
 
 public class CollectionController {
-  private Collection collection;
-  private CollectionView collectionView;
+  private final Collection collection;
+  private final CollectionView collectionView;
 
   public CollectionController(Collection collection,CollectionView collectionView) {
     this.collection = collection;
