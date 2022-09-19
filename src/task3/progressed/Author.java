@@ -14,6 +14,10 @@ public class Author implements InputOutput {
     this.country = country;
   }
 
+  public Author(){
+    this("",new Date(),"");
+  }
+
   public String getFIO() {
     return FIO;
   }

@@ -11,6 +11,10 @@ public class PublishingHouse implements InputOutput {
     this.address = address;
   }
 
+  public PublishingHouse(){
+    this("","");
+  }
+
   public String getName() {
     return name;
   }

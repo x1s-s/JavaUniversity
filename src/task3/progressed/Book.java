@@ -19,6 +19,10 @@ public class Book implements InputOutput {
     this.creationDate = creationDate;
   }
 
+  public Book(){
+    this(new Author(),Genre.FANTASY,new PublishingHouse(),"",new Date());
+  }
+
   public Author getAuthor() {
     return author;
   }
