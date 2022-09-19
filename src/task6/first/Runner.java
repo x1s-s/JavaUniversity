@@ -22,10 +22,6 @@ public class Runner {
       }
       menuPosition = menu(mainMenu,scanner);
     }
-    Worker worker = new Worker();
-    System.out.println(worker);
-    worker.fill(scanner);
-    System.out.println(worker);
   }
 
   public static int menu(String[] menuOptions,Scanner scanner){
