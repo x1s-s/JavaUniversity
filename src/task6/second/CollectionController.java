@@ -60,7 +60,7 @@ public class CollectionController<T> {
     }
   }
 
-  private Collection<T> findLast(){
+  protected Collection<T> findLast(){
     Collection<T> temp = firstElement;
     while(temp != null && temp.getNextElement() != null){
       temp = temp.getNextElement();
@@ -68,7 +68,7 @@ public class CollectionController<T> {
     return temp;
   }
 
-  private Collection<T> findByIndex(int n){
+  protected Collection<T> findByIndex(int n){
     Collection<T> temp = firstElement;
     int i = 0;
     while(temp != null && i != n){
@@ -79,16 +79,6 @@ public class CollectionController<T> {
       throw new IndexOutOfBoundsException("Index error out of bounds");
     }
     return temp;
-  }
-
-  private int length(){
-    int i = 0;
-    Collection<T> temp = firstElement;
-    while(temp != null && temp.getNextElement() != null){
-      temp = temp.getNextElement();
-      i++;
-    }
-    return i;
   }
 
   public void updateViews() {
