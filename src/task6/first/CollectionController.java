@@ -1,6 +1,7 @@
 package task6.first;
 
 import java.util.Scanner;
+import task3.progressed.Book;
 
 public class CollectionController {
   private Collection collection;
@@ -12,35 +13,35 @@ public class CollectionController {
   }
 
   public void addElement(Scanner scanner){
-    Man[] mens = collection.getMens();
-    Man[] tempArray = mens.clone();
-    mens = new Man[mens.length + 1];
-    mens[mens.length - 1] = ManFactory.getFromFactory(scanner);
-    System.arraycopy(tempArray,0, mens,0,tempArray.length);
-    collection.setMens(mens);
+    Book[] books = collection.getBooks();
+    Book[] tempArray = books.clone();
+    books = new Book[books.length + 1];
+    books[books.length - 1] = new Book();
+    System.arraycopy(tempArray,0, books,0,tempArray.length);
+    collection.setBooks(books);
     //authors[authors.length - 1].fill();
   }
 
   public void editElement(Scanner scanner){
     System.out.print("Enter element index : ");
-    Man[] mens = collection.getMens();
-    mens[scanner.nextInt()].fill(scanner);
-    collection.setMens(mens);
+    Book[] books = collection.getBooks();
+    books[scanner.nextInt()].fill(scanner);
+    collection.setBooks(books);
   }
 
   public void deleteElement(Scanner scanner){
     System.out.print("Enter element index : ");
     int deleteIndex = scanner.nextInt();
-    Man[] mens = collection.getMens();
-    Man[] tempArray = new Man[mens.length - 1];
-    System.arraycopy(mens,0,tempArray,0,deleteIndex);
-    System.arraycopy(mens,deleteIndex + 1,tempArray,deleteIndex,tempArray.length - deleteIndex);
-    mens = new Man[tempArray.length];
-    System.arraycopy(tempArray,0, mens,0, mens.length);
-    collection.setMens(mens);
+    Book[] books = collection.getBooks();
+    Book[] tempArray = new Book[books.length - 1];
+    System.arraycopy(books,0,tempArray,0,deleteIndex);
+    System.arraycopy(books,deleteIndex + 1,tempArray,deleteIndex,tempArray.length - deleteIndex);
+    books = new Book[tempArray.length];
+    System.arraycopy(tempArray,0, books,0, books.length);
+    collection.setBooks(books);
   }
 
   public void updateViews(){
-    collectionView.OutputCollection(collection.getMens());
+    collectionView.OutputCollection(collection.getBooks());
   }
 }

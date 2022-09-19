@@ -1,21 +1,20 @@
 package task6.first;
 
-import java.util.Date;
-import java.util.Scanner;
+import task3.progressed.Book;
 
 public class Collection {
-  private Man[] mens;
+  private Book[] books;
 
   public Collection(){
-    mens = new Man[0];
+    books = new Book[0];
   }
 
-  public Man[] getMens() {
-    return mens;
+  public Book[] getBooks() {
+    return books;
   }
 
-  public void setMens(Man[] mens) {
-    this.mens = mens;
+  public void setBooks(Book[] books) {
+    this.books = books;
   }
 
 }
