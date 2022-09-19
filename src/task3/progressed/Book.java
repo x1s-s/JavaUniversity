@@ -23,6 +23,11 @@ public class Book implements InputOutput {
     this(new Author(),Genre.FANTASY,new PublishingHouse(),"",new Date());
   }
 
+  public Book(Scanner scanner){
+    this();
+    this.fill(scanner);
+  }
+
   public Author getAuthor() {
     return author;
   }
