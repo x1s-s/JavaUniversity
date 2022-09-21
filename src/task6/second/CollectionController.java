@@ -3,7 +3,7 @@ package task6.second;
 import java.util.Scanner;
 
 public class CollectionController<T> {
-  private Collection<T> firstElement;
+  protected Collection<T> firstElement;
   private final CollectionView<T> collectionView;
 
   public CollectionController(Collection<T> collection,CollectionView<T> collectionView){
@@ -79,6 +79,16 @@ public class CollectionController<T> {
       throw new IndexOutOfBoundsException("Index error out of bounds");
     }
     return temp;
+  }
+
+  protected int length(){
+    int length = 0;
+    Collection<T> temp = firstElement;
+    while(temp != null){
+      temp = temp.getNextElement();
+      length++;
+    }
+    return length;
   }
 
   public void updateViews() {
