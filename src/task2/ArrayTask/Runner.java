@@ -3,6 +3,8 @@ package task2.ArrayTask;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /*
 Дан массив A[n]. Подсчитать количество тех
@@ -23,12 +25,7 @@ public class Runner {
   }
 
   public static int[] createRandomArray(int n) {
-    Random random = new Random();
-    int[] array = new int[n];
-    for (int i = 0; i < array.length; i++) {
-      array[i] = random.nextInt(100) - 50;
-    }
-    return array;
+    return IntStream.generate(() -> new Random().nextInt(100) - 50).limit(n).toArray();
   }
 
   public static int numberOfTrue(int[] array) {

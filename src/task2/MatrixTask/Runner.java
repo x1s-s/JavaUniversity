@@ -26,7 +26,7 @@ public class Runner {
     for (var temp: matrix){
       System.out.println(Arrays.toString(temp));
     }
-    System.out.println("number of positive columns = " + numberOfPositiveColums(matrix));
+    System.out.println("number of positive columns = " + numberOfPositiveColumns(matrix));
     System.out.println("sort matrix");
     for (var temp: sortDiag(matrix)){
       System.out.println(Arrays.toString(temp));
@@ -51,7 +51,7 @@ public class Runner {
     }
   }
 
-  public static int numberOfPositiveColums(int[][] matrix) {
+  public static int numberOfPositiveColumns(int[][] matrix) {
     int number = 0;
     for (int i = 0; i < matrix.length; i++) {
       int k = 0;

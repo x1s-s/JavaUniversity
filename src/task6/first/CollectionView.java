@@ -2,12 +2,13 @@ package task6.first;
 
 import task3.progressed.Book;
 
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
+
 public class CollectionView {
   public void OutputCollection(Book[] books) {
-    for (int i = 0; i < books.length; i++) {
-      if(books[i] != null){
-        System.out.println("books[" + i + "] = "  + books[i]);
-      }
-    }
+    AtomicInteger number = new AtomicInteger();
+    Stream.of(books).filter(Objects::nonNull).forEach(x -> System.out.println("books[" + number.getAndIncrement() + "] = " + x));
   }
 }
