@@ -13,9 +13,9 @@ public class CollectionController<T> {
 
   public void addElement(T element) {
     if(firstElement == null || firstElement.getElement() == null) {
-      firstElement = new Collection<T>(element);
+      firstElement = new Collection<>(element);
     } else{
-      findLast().setNextElement(new Collection<T>(element));
+      findLast().setNextElement(new Collection<>(element));
     }
   }
 

@@ -4,11 +4,10 @@ import static task2.ArrayTask.Runner.createRandomArray;
 import static task2.ArrayTask.Runner.numberOfTrue;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class MyThread3 implements Runnable{
-  private int arraySize;
-  private Thread threadProc2;
+  private final int arraySize;
+  private final Thread threadProc2;
 
   public MyThread3(int arraySize, Thread threadProc2) {
     this.arraySize = arraySize;

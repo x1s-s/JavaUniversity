@@ -1,7 +1,6 @@
 package task6.third;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -51,7 +50,6 @@ public class FileCollection extends CollectionController<Book> {
       File file = new File(fileName);
       FileReader fileReader = new FileReader(file);
       Scanner fileScanner = new Scanner(fileReader);
-      Collection<Book> temp = findLast();
       int length = Integer.parseInt(fileScanner.nextLine());
       for (int i = 0; i < length; i++) {
         this.addElement(readBookFromFile(fileScanner));

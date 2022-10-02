@@ -1,14 +1,13 @@
 package task8.ArrayThread;
 
 import java.util.Arrays;
-import java.util.Random;
 import static task2.ArrayTask.Runner.numberOfTrue;
 import static task2.ArrayTask.Runner.createRandomArray;
 
 public class MyThread1 implements Runnable{
-  private int arraySize;
-  private Thread threadProc2;
-  private Thread threadProc3;
+  private final int arraySize;
+  private final Thread threadProc2;
+  private final Thread threadProc3;
 
   public MyThread1(int arraySize, Thread threadProc2, Thread threadProc3) {
     this.arraySize = arraySize;

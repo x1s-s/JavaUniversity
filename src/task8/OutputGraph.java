@@ -1,7 +1,5 @@
 package task8;
 
-import javax.sound.midi.Soundbank;
-
 public class OutputGraph {
 
 

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /*
 Дан массив A[n]. Подсчитать количество тех
@@ -15,7 +14,7 @@ import java.util.stream.Stream;
 public class Runner {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    int n = 0;
+    int n;
     do {
       n = scanner.nextInt();
     } while(n < 0);

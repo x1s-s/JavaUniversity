@@ -17,12 +17,9 @@ package task4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
 
 public class Runner {
   public static void main(String[] args) {
-    Locale locale = Locale.ROOT;
     StringBuilder str1 = new StringBuilder("abc");
     StringBuilder str2 = new StringBuilder("sabc");
     StringBuilder str3 = new StringBuilder("Hello world");
@@ -104,7 +101,7 @@ public class Runner {
   }
 
   public static String[] split(String str,char splitChar){
-    ArrayList<String> stringArrayList = new ArrayList<String>();
+    ArrayList<String> stringArrayList = new ArrayList<>();
     int position = str.indexOf(splitChar);
     if(position == -1){
       return new String[]{str};

@@ -1,7 +1,7 @@
 package task6.first;
 
 public class MenuException extends Exception{
-  private int number;
+  private final int number;
   public int getNumber(){
     return  number;
   }

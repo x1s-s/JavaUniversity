@@ -23,7 +23,7 @@ public class PiecesInitialFunc {
 
     System.out.print("u = ");
     double u = scanner.nextDouble();
-    double x = 0;
+    double x;
     while(true){
       try{
         System.out.print("x = ");
