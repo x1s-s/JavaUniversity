@@ -1,15 +1,12 @@
 package task3.lombok;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 import java.util.Scanner;
 
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
