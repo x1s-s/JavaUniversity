@@ -20,7 +20,7 @@ public class Runner {
                     case 1 -> collectionController.editElement(scanner);
                     case 2 -> collectionController.deleteElement(scanner);
                     case 3 -> collectionController.updateViews();
-                    default -> throw new MenuException("invalid menu item", 2);
+                    default -> throw new MenuException("invalid menu item", menuPosition);
                 }
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());

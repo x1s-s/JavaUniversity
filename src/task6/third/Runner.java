@@ -23,7 +23,7 @@ public class Runner {
                     case 3 -> fileCollection.updateViews();
                     case 4 -> fileCollection.outputToFile(scanner);
                     case 5 -> fileCollection.inputFormFile(scanner);
-                    default -> throw new MenuException("invalid menu item", 2);
+                    default -> throw new MenuException("invalid menu item", menuPosition);
                 }
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());

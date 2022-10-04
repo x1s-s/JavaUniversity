@@ -11,4 +11,9 @@ public class MenuException extends Exception {
         super(message);
         this.number = number;
     }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage() + " " + number;
+    }
 }
