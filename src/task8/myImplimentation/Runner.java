@@ -19,7 +19,7 @@ public class Runner {
         });
         thread2 = new Thread(new MyRunnable(10) {
             @Override
-            public void run(){
+            public void run() {
                 System.out.println("Поток 2 начал выполнение");
                 task();
                 System.out.println("Поток 2 закончил выполнение");
@@ -27,7 +27,7 @@ public class Runner {
         });
         thread3 = new Thread(new MyRunnable(10) {
             @Override
-            public void run(){
+            public void run() {
                 try {
                     thread2.join();
                 } catch (InterruptedException e) {
