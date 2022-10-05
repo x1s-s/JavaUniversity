@@ -2,14 +2,14 @@ package task7;
 
 
 import javax.swing.JLabel;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class CollectionView<T> {
-    public void OutputCollection(Collection<T> firstElement, JLabel label) {
+    public void OutputCollection(Collection<T> collection, JLabel label) {
         label.setText("<html>");
-        while (firstElement != null && firstElement.getElement() != null) {
-            label.setText(label.getText() + firstElement.getElement().toString() + "<br>");
-            firstElement = firstElement.getNextElement();
-        }
+        AtomicInteger number = new AtomicInteger();
+        Stream.of(collection.getArray()).forEach(x -> label.setText(label.getText() + "element[" + number.getAndIncrement() + "] = " + x + "<br>"));
         label.setText(label.getText() + "</html>");
     }
 }

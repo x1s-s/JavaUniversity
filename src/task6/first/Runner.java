@@ -1,5 +1,7 @@
 package task6.first;
 
+import task3.progressed.Book;
+
 import java.util.Scanner;
 
 public class Runner {
@@ -16,7 +18,7 @@ public class Runner {
         while (menuPosition != mainMenu.length - 1) {
             try {
                 switch (menuPosition) {
-                    case 0 -> collectionController.addElement(scanner);
+                    case 0 -> collectionController.addElement(new Book(scanner));
                     case 1 -> collectionController.editElement(scanner);
                     case 2 -> collectionController.deleteElement(scanner);
                     case 3 -> collectionController.updateViews();

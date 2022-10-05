@@ -1,12 +1,14 @@
 package task7;
 
-import java.awt.Label;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import javax.swing.JLabel;
 
 import task3.progressed.Author;
@@ -23,12 +25,8 @@ public class FileCollection extends CollectionController<Book> {
         try {
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
-            Collection<Book> temp = firstElement;
-            fileWriter.write("" + super.length());
-            while (temp != null && temp.getElement() != null) {
-                outputElementToFile(temp.getElement(), fileWriter);
-                temp = temp.getNextElement();
-            }
+            fileWriter.write("" + collection.getArray().length);
+            Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
             fileWriter.close();
         } catch (IOException e) {
             label.setText("Ошибка записи в файл");
@@ -41,9 +39,7 @@ public class FileCollection extends CollectionController<Book> {
             FileReader fileReader = new FileReader(file);
             Scanner fileScanner = new Scanner(fileReader);
             int length = Integer.parseInt(fileScanner.nextLine());
-            for (int i = 0; i < length; i++) {
-                this.addElement(readBookFromFile(fileScanner));
-            }
+            IntStream.range(0,length - 1).forEach(x -> addElement(readBookFromFile(fileScanner)));
             fileReader.close();
         } catch (Exception e) {
             label.setText("Ошибка чтения из файла");

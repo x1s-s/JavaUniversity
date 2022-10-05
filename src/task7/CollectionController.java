@@ -1,24 +1,26 @@
 package task7;
 
+import lombok.AllArgsConstructor;
+
 import javax.swing.JLabel;
+import java.util.Arrays;
 
-
+@AllArgsConstructor
 public class CollectionController<T> {
-    protected Collection<T> firstElement;
+    protected Collection<T> collection;
     private final CollectionView<T> collectionView;
 
-    public CollectionController(Collection<T> collection,
-                                CollectionView<T> collectionView) {
-        this.firstElement = collection;
-        this.collectionView = collectionView;
-    }
-
     public void addElement(T element) {
-        if (firstElement == null || firstElement.getElement() == null) {
-            firstElement = new Collection<T>(element);
-        } else {
-            findLast().setNextElement(new Collection<T>(element));
+        T[] array = collection.getArray();
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == null){
+                array[i] = element;
+                return;
+            }
         }
+        array = Arrays.copyOf(array, array.length * 2);
+        array[array.length / 2] = element;
+        collection.setArray(array);
     }
 
     public void editElement(T element, String strIndex, JLabel label) {
@@ -30,9 +32,9 @@ public class CollectionController<T> {
             return;
         }
         try {
-            findByIndex(index).setElement(element);
-        } catch (Exception exception) {
-            label.setText(exception.getMessage());
+            collection.getArray()[index] = element;
+        } catch (Exception e){
+            label.setText("Неверный индекс");
         }
     }
 
@@ -45,59 +47,14 @@ public class CollectionController<T> {
             return;
         }
         try {
-            if (index == 0) {
-                if (firstElement.getNextElement() == null) {
-                    firstElement = null;
-                } else {
-                    firstElement.setElement(firstElement.getNextElement().getElement());
-                    firstElement.setNextElement(firstElement.getNextElement().getNextElement());
-                }
-            } else {
-                Collection<T> temp = findByIndex(index - 1);
-                if (findByIndex(index) == findLast()) {
-                    temp.setNextElement(null);
-                } else {
-                    temp.setNextElement(temp.getNextElement().getNextElement());
-                }
-
-            }
-        } catch (Exception exception) {
-            label.setText(exception.getMessage());
+            collection.getArray()[index] = null;
+        } catch (Exception e){
+            label.setText("Неверный индекс");
         }
     }
 
-    protected Collection<T> findLast() {
-        Collection<T> temp = firstElement;
-        while (temp != null && temp.getNextElement() != null) {
-            temp = temp.getNextElement();
-        }
-        return temp;
-    }
-
-    protected Collection<T> findByIndex(int n) {
-        Collection<T> temp = firstElement;
-        int i = 0;
-        while (temp != null && i != n) {
-            temp = temp.getNextElement();
-            i++;
-        }
-        if (i != n) {
-            throw new IndexOutOfBoundsException("Index error out of bounds");
-        }
-        return temp;
-    }
-
-    protected int length() {
-        int length = 0;
-        Collection<T> temp = firstElement;
-        while (temp != null) {
-            temp = temp.getNextElement();
-            length++;
-        }
-        return length;
-    }
 
     public void updateViews(JLabel label) {
-        collectionView.OutputCollection(firstElement, label);
+        collectionView.OutputCollection(collection, label);
     }
 }

@@ -12,17 +12,32 @@ public class Runner {
         String[] mainMenu = new String[]{"add element", "edit element(by index)", "delete element(by index)", "output all elements", "output(to file)", "input(from file)", "exit"};
         Scanner scanner = new Scanner(System.in);
 
-        FileCollection fileCollection = new FileCollection(new Collection<>(), new CollectionView<>());
+        FileCollection fileCollection = new FileCollection(new Collection<>(new Book[1]), new CollectionView<>());
         int menuPosition = menu(mainMenu, scanner);
+        int index;
         while (menuPosition != mainMenu.length - 1) {
             try {
                 switch (menuPosition) {
                     case 0 -> fileCollection.addElement(new Book());
-                    case 1 -> fileCollection.editElement(new Book(scanner), scanner);
-                    case 2 -> fileCollection.deleteElement(scanner);
+                    case 1 -> {
+                        System.out.println("Index = ");
+                        index = Integer.parseInt(scanner.nextLine());
+                        fileCollection.editElement(new Book(scanner), index);
+                    }
+                    case 2 -> {
+                        System.out.println("Index = ");
+                        index = Integer.parseInt(scanner.nextLine());
+                        fileCollection.deleteElement(index);
+                    }
                     case 3 -> fileCollection.updateViews();
-                    case 4 -> fileCollection.outputToFile(scanner);
-                    case 5 -> fileCollection.inputFormFile(scanner);
+                    case 4 -> {
+                        System.out.println("File path : ");
+                        fileCollection.outputToFile(scanner.nextLine());
+                    }
+                    case 5 -> {
+                        System.out.println("File path :");
+                        fileCollection.inputFormFile(scanner.nextLine());
+                    }
                     default -> throw new MenuException("invalid menu item", menuPosition);
                 }
             } catch (Exception exception) {
@@ -37,6 +52,6 @@ public class Runner {
             System.out.println(i + ")" + menuOptions[i]);
         }
         System.out.print("Enter menu item: ");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 }

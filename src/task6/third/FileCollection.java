@@ -5,7 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import task3.progressed.Author;
 import task3.progressed.Book;
@@ -20,41 +23,25 @@ public class FileCollection extends CollectionController<Book> {
         super(collection, collectionView);
     }
 
-    public void outputToFile(Scanner scanner) {
+    public void outputToFile(String filePath) {
         try {
-            System.out.println("Enter file name : ");
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
-            }
-            String fileName = scanner.nextLine();
-            File file = new File(fileName);
+            File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
-            Collection<Book> temp = firstElement;
-            fileWriter.write("" + super.length());
-            while (temp != null && temp.getElement() != null) {
-                outputElementToFile(temp.getElement(), fileWriter);
-                temp = temp.getNextElement();
-            }
+            fileWriter.write("" + collection.getArray().length);
+            Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void inputFormFile(Scanner scanner) {
+    public void inputFormFile(String filePath) {
         try {
-            System.out.println("Enter file name : ");
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
-            }
-            String fileName = scanner.nextLine();
-            File file = new File(fileName);
+            File file = new File(filePath);
             FileReader fileReader = new FileReader(file);
             Scanner fileScanner = new Scanner(fileReader);
             int length = Integer.parseInt(fileScanner.nextLine());
-            for (int i = 0; i < length; i++) {
-                this.addElement(readBookFromFile(fileScanner));
-            }
+            IntStream.range(0,length - 1).forEach(x -> addElement(readBookFromFile(fileScanner)));
             fileReader.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,6 +72,5 @@ public class FileCollection extends CollectionController<Book> {
             e.printStackTrace();
         }
     }
-
 
 }

@@ -84,7 +84,7 @@ public class Book implements InputOutput {
     System.out.println("Name = ");
     name = scanner.nextLine();
     System.out.println("Creation day =");
-    creationDate = new Date(scanner.nextInt());
+    creationDate = new Date(Integer.parseInt(scanner.nextLine()));
   }
 
   @Override

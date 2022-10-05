@@ -7,11 +7,11 @@ import task3.progressed.Book;
 public record CollectionController(Collection collection,
                                    CollectionView collectionView) {
 
-    public void addElement(Scanner scanner) {
+    public void addElement(Book book) {
         Book[] books = collection.getBooks();
         for (int i = 0; i < books.length; i++) {
             if (books[i] == null) {
-                books[i] = new Book();
+                books[i] = book;
                 //books[i].fill(scanner);
                 collection.setBooks(books);
                 return;
