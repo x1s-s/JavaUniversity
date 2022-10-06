@@ -25,7 +25,7 @@ public class FileCollection extends CollectionController<Book> {
             reentrantLock.lock();
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
-            fileWriter.write("" + collection.getArray().length);
+            fileWriter.write("" + Stream.of(collection.getArray()).filter(Objects::nonNull).count());
             Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
             fileWriter.close();
             reentrantLock.unlock();

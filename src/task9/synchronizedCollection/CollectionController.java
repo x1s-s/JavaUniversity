@@ -20,18 +20,16 @@ public class CollectionController<T> {
     }
 
     public void addElement(T element){
+        reentrantLock.lock();
         T[] array = collection.getArray();
         for (int i = 0; i < array.length; i++) {
             if(array[i] == null){
-                reentrantLock.lock();
                 array[i] = element;
-                reentrantLock.unlock();
                 return;
             }
         }
         array = Arrays.copyOf(array, array.length * 2);
         array[array.length / 2] = element;
-        reentrantLock.lock();
         collection.setArray(array);
         reentrantLock.unlock();
     }
@@ -39,8 +37,8 @@ public class CollectionController<T> {
     @SuppressWarnings("unchecked")
     public void editElement(Types type, int index, Scanner scanner){
         try {
-            collection.getArray()[index] = null;
             reentrantLock.lock();
+            collection.getArray()[index] = null;
             collection.getArray()[index] = (T) Factory.getFromFactory(type, scanner);
             reentrantLock.unlock();
         } catch (Exception e){
@@ -50,8 +48,8 @@ public class CollectionController<T> {
 
     public void deleteElement(int index){
         try {
-            collection.getArray()[index] = null;
             reentrantLock.lock();
+            collection.getArray()[index] = null;
             System.arraycopy(collection.getArray(), index + 1, collection.getArray(), index, collection.getArray().length - index - 1);
             reentrantLock.unlock();
         } catch (Exception e){
