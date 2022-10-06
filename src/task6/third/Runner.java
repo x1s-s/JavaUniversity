@@ -6,6 +6,7 @@ import task3.progressed.Book;
 import task6.first.MenuException;
 import task6.second.Collection;
 import task6.second.CollectionView;
+import task6.second.Types;
 
 public class Runner {
     public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class Runner {
                     case 1 -> {
                         System.out.println("Index = ");
                         index = Integer.parseInt(scanner.nextLine());
-                        fileCollection.editElement(new Book(scanner), index);
+                        fileCollection.editElement(Types.BOOK, index, scanner);
                     }
                     case 2 -> {
                         System.out.println("Index = ");

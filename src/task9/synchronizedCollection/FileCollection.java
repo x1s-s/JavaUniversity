@@ -5,61 +5,48 @@ import task3.progressed.Book;
 import task3.progressed.Genre;
 import task3.progressed.PublishingHouse;
 
-
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class FileCollection extends CollectionController<Book> {
-
     public FileCollection(Collection<Book> collection, CollectionView<Book> collectionView) {
         super(collection, collectionView);
     }
 
-    public void outputToFile(String fileName) {
-        new Thread(()->{
-            try {
-                lock.lock();
-                File file = new File(fileName);
-                FileWriter fileWriter = new FileWriter(file, false);
-                Collection<Book> temp = firstElement;
-                fileWriter.write("" + super.length());
-                while (temp != null && temp.getElement() != null) {
-                    outputElementToFile(temp.getElement(), fileWriter);
-                    temp = temp.getNextElement();
-                }
-                fileWriter.close();
-            } catch (IOException exception) {
-                System.out.println(exception.getMessage());
-            } finally {
-                lock.unlock();
-            }
-        }).start();
+    public void outputToFile(String filePath) {
+        try {
+            reentrantLock.lock();
+            File file = new File(filePath);
+            FileWriter fileWriter = new FileWriter(file, false);
+            fileWriter.write("" + collection.getArray().length);
+            Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
+            fileWriter.close();
+            reentrantLock.unlock();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void inputFormFile(String fileName) {
-        new Thread(() -> {
-            lock.lock();
-            File file = new File(fileName);
-            try {
-                FileReader fileReader = new FileReader(file);
-                Scanner fileScanner = new Scanner(fileReader);
-                int length = Integer.parseInt(fileScanner.nextLine());
-                for (int i = 0; i < length; i++) {
-                    Book element = readBookFromFile(fileScanner);
-                    if (firstElement == null || firstElement.getElement() == null) {
-                        firstElement = new Collection<>(element);
-                    } else {
-                        findLast().setNextElement(new Collection<>(element));
-                    }
-                }
-                fileReader.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            } finally {
-                lock.unlock();
-            }
-        }).start();
+    public void inputFormFile(String filePath) {
+        try {
+            reentrantLock.lock();
+            File file = new File(filePath);
+            FileReader fileReader = new FileReader(file);
+            Scanner fileScanner = new Scanner(fileReader);
+            int length = Integer.parseInt(fileScanner.nextLine());
+            IntStream.range(0,length - 1).forEach(x -> addElement(readBookFromFile(fileScanner)));
+            fileReader.close();
+            reentrantLock.unlock();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private Book readBookFromFile(Scanner scanner) {
@@ -86,6 +73,5 @@ public class FileCollection extends CollectionController<Book> {
             e.printStackTrace();
         }
     }
-
 
 }

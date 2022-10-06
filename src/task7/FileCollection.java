@@ -21,11 +21,14 @@ public class FileCollection extends CollectionController<Book> {
         super(collection, collectionView);
     }
 
+    public void deleteAll() {
+        collection.setArray(new Book[1]);
+    }
     public void outputFromFile(String filePath, JLabel label) {
         try {
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
-            fileWriter.write("" + collection.getArray().length);
+            fileWriter.write("" + Stream.of(collection.getArray()).filter(Objects::nonNull).count());
             Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
             fileWriter.close();
         } catch (IOException e) {

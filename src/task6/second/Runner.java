@@ -15,11 +15,11 @@ public class Runner {
         while (menuPosition != mainMenu.length - 1) {
             try {
                 switch (menuPosition) {
-                    case 0 -> collectionController.addElement(new Book());
+                    case 0 -> collectionController.addElement(new Book(scanner));
                     case 1 -> {
                         System.out.println("Index = ");
                         index = Integer.parseInt(scanner.nextLine());
-                        collectionController.editElement(new Book(scanner), index);
+                        collectionController.editElement(Types.BOOK, index, scanner);
                     }
                     case 2 -> {
                         System.out.println("Index = ");

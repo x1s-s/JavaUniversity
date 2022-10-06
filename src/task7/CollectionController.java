@@ -48,6 +48,7 @@ public class CollectionController<T> {
         }
         try {
             collection.getArray()[index] = null;
+            System.arraycopy(collection.getArray(), index + 1, collection.getArray(), index, collection.getArray().length - index - 1);
         } catch (Exception e){
             label.setText("Неверный индекс");
         }

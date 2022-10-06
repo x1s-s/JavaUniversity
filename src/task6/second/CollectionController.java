@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
@@ -25,9 +26,11 @@ public class CollectionController<T> {
         collection.setArray(array);
     }
 
-    public void editElement(T element, int index){
+    @SuppressWarnings("unchecked")
+    public void editElement(Types type, int index, Scanner scanner){
         try {
-            collection.getArray()[index] = element;
+            collection.getArray()[index] = null;
+            collection.getArray()[index] = (T)Factory.getFromFactory(type, scanner);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -36,6 +39,7 @@ public class CollectionController<T> {
     public void deleteElement(int index){
         try {
             collection.getArray()[index] = null;
+            System.arraycopy(collection.getArray(), index + 1, collection.getArray(), index, collection.getArray().length - index - 1);
         } catch (Exception e){
             e.printStackTrace();
         }

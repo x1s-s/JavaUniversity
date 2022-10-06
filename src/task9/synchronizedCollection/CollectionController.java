@@ -1,113 +1,67 @@
 package task9.synchronizedCollection;
 
-import lombok.AllArgsConstructor;
+import task6.second.Types;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Stream;
 
-@AllArgsConstructor
 public class CollectionController<T> {
-    protected Collection<T> firstElement;
+
+    protected Collection<T> collection;
     private final CollectionView<T> collectionView;
-    protected final ReentrantLock lock = new ReentrantLock();
+    protected ReentrantLock reentrantLock = new ReentrantLock();
 
+    public CollectionController(Collection<T> collection, CollectionView<T> collectionView) {
+        this.collection = collection;
+        this.collectionView = collectionView;
+    }
 
-    public void addElement(T element) {
-        new Thread(new MyRunnable<>(element) {
-            @Override
-            public void run() {
-                lock.lock();
-                if (firstElement == null || firstElement.getElement() == null) {
-                    firstElement = new Collection<>(element);
-                } else {
-                    findLast().setNextElement(new Collection<>(element));
-                }
-                lock.unlock();
+    public void addElement(T element){
+        T[] array = collection.getArray();
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == null){
+                reentrantLock.lock();
+                array[i] = element;
+                reentrantLock.unlock();
+                return;
             }
-        }).start();
-    }
-
-    public void editElement(T element, int index) {
-        new Thread(new MyRunnable<>(element) {
-            @Override
-            public void run() {
-                lock.lock();
-                try {
-                    findByIndex(index).setElement(element);
-                } catch (Exception exception) {
-                    System.out.println(exception.getMessage());
-                }finally {
-                    lock.unlock();
-                }
-
-            }
-        }).start();
-    }
-
-    public void deleteElement(int index) {
-        new Thread(() -> {
-            lock.lock();
-            try {
-                if (index == 0) {
-                    if (firstElement.getNextElement() == null) {
-                        firstElement = null;
-                    } else {
-                        firstElement.setElement(firstElement.getNextElement().getElement());
-                        firstElement.setNextElement(firstElement.getNextElement().getNextElement());
-                    }
-                } else {
-                    Collection<T> temp = findByIndex(index - 1);
-                    if (findByIndex(index) == findLast()) {
-                        temp.setNextElement(null);
-                    } else {
-                        temp.setNextElement(temp.getNextElement().getNextElement());
-                    }
-
-                }
-            } catch (Exception exception) {
-                System.out.println(exception.getMessage());
-            } finally {
-                lock.unlock();
-            }
-        }).start();
-    }
-
-    protected Collection<T> findLast() {
-        Collection<T> temp = firstElement;
-        while (temp != null && temp.getNextElement() != null) {
-            temp = temp.getNextElement();
         }
-        return temp;
+        array = Arrays.copyOf(array, array.length * 2);
+        array[array.length / 2] = element;
+        reentrantLock.lock();
+        collection.setArray(array);
+        reentrantLock.unlock();
     }
 
-    protected Collection<T> findByIndex(int n) {
-        Collection<T> temp = firstElement;
-        int i = 0;
-        while (temp != null && i != n) {
-            temp = temp.getNextElement();
-            i++;
+    @SuppressWarnings("unchecked")
+    public void editElement(Types type, int index, Scanner scanner){
+        try {
+            collection.getArray()[index] = null;
+            reentrantLock.lock();
+            collection.getArray()[index] = (T) Factory.getFromFactory(type, scanner);
+            reentrantLock.unlock();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        if (i != n) {
-            throw new IndexOutOfBoundsException("Index error out of bounds");
-        }
-        return temp;
     }
 
-    protected int length() {
-        int length = 0;
-        Collection<T> temp = firstElement;
-        while (temp != null) {
-            temp = temp.getNextElement();
-            length++;
+    public void deleteElement(int index){
+        try {
+            collection.getArray()[index] = null;
+            reentrantLock.lock();
+            System.arraycopy(collection.getArray(), index + 1, collection.getArray(), index, collection.getArray().length - index - 1);
+            reentrantLock.unlock();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        return length;
     }
-
-    public void updateViews() {
-        new Thread(() -> {
-            lock.lock();
-            collectionView.OutputCollection(firstElement);
-            lock.unlock();
-        }).start();
+    public void updateViews(){
+        collectionView.OutputCollection(collection);
+    }
+    protected int length(){
+        return (int)Stream.of(collection.getArray()).filter(Objects::nonNull).count();
     }
 }

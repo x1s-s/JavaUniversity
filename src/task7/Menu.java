@@ -1,11 +1,7 @@
 package task7;
 
 import java.util.Date;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import task3.progressed.Author;
 import task3.progressed.Book;
@@ -32,14 +28,20 @@ public class Menu {
     private JTextField textField7;
     private JTextField textField8;
     private JLabel output;
+    private JButton deleteAllButton;
+    private JComboBox comboBox1;
 
     public Menu() {
         FileCollection fileCollection = new FileCollection(new Collection<>(new Book[1]), new CollectionView<>());
+        deleteAllButton.addActionListener(e -> {
+            fileCollection.deleteAll();
+            output.setText("Коллекция очищена");
+        });
         addElementButton.addActionListener(e -> {
             try {
                 fileCollection.addElement(new Book(
                         new Author(textField1.getText(), new Date(Long.parseLong(textField2.getText())), textField3.getText()),
-                        Genre.valueOf(textField4.getText()),
+                        Genre.valueOf(comboBox1.getSelectedItem().toString()),
                         new PublishingHouse(textField5.getText(), textField6.getText()),
                         textField7.getText(), new Date(Long.parseLong(textField8.getText()))
                 ));
@@ -53,7 +55,7 @@ public class Menu {
             try {
                 fileCollection.editElement(new Book(
                         new Author(textField1.getText(), new Date(Long.parseLong(textField2.getText())), textField3.getText()),
-                        Genre.valueOf(textField4.getText()),
+                        Genre.valueOf(comboBox1.getSelectedItem().toString()),
                         new PublishingHouse(textField5.getText(), textField6.getText()),
                         textField7.getText(), new Date(Long.parseLong(textField8.getText()))
                 ), elementIndexTextField.getText(), output);
