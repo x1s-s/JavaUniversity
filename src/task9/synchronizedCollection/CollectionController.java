@@ -36,25 +36,25 @@ public class CollectionController<T> {
 
     @SuppressWarnings("unchecked")
     public void editElement(Types type, int index, Scanner scanner){
+        reentrantLock.lock();
         try {
-            reentrantLock.lock();
             collection.getArray()[index] = null;
             collection.getArray()[index] = (T) Factory.getFromFactory(type, scanner);
-            reentrantLock.unlock();
         } catch (Exception e){
             e.printStackTrace();
         }
+        reentrantLock.unlock();
     }
 
     public void deleteElement(int index){
+        reentrantLock.lock();
         try {
-            reentrantLock.lock();
             collection.getArray()[index] = null;
             System.arraycopy(collection.getArray(), index + 1, collection.getArray(), index, collection.getArray().length - index - 1);
-            reentrantLock.unlock();
         } catch (Exception e){
             e.printStackTrace();
         }
+        reentrantLock.unlock();
     }
     public void updateViews(){
         collectionView.OutputCollection(collection);

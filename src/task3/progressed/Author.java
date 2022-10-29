@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Author implements InputOutput {
-  String FIO;
-  Date birthDate;
-  String country;
+  private String FIO;
+  private Date birthDate;
+  private String country;
 
   public Author(String FIO, Date birthDate, String country) {
     this.FIO = FIO;
@@ -38,7 +38,7 @@ public class Author implements InputOutput {
     return country;
   }
 
-  public void setCountry(String country) {
+  private void setCountry(String country) {
     this.country = country;
   }
 

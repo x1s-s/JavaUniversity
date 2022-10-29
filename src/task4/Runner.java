@@ -17,6 +17,7 @@ package task4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Runner {
   public static void main(String[] args) {
@@ -63,7 +64,6 @@ public class Runner {
     }
     return str.toString();
   }
-
 
   // true - больше согласных, false - больше гласных в предложение n
   public static boolean[] task20(String str){

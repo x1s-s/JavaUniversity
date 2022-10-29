@@ -23,22 +23,22 @@ public class RegexUtils {
   }
 
   public static boolean isMAC(String str){
-    return  Pattern.compile("^(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$").matcher(str).find();
+    return  Pattern.compile("^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$").matcher(str).find();
   }
 
   public static boolean isDate(String str){
     String dateRegex = "^(29/02/(2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26])))$"
-        + "|^(((0[1-9]|1[0-9]|2[0-8])-02-(19|2[0-9])[0-9]{2}))$"
+        + "|^(((0[1-9]|1[0-9]|2[0-8])/02/(19|2[0-9])[0-9]{2}))$"
         + "|^((0[1-9]|[12][0-9]|3[01])/(0[13578]|10|12)/((19|2[0-9])[0-9]{2}))$"
         + "|^(((0[1-9]|[12][0-9]|30)/(0[469]|11)/(19|2[0-9])[0-9]{2}))$";
     return  Pattern.compile(dateRegex).matcher(str).find();
   }
   public static boolean isEmail(String str){
-    return  Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$").matcher(str).find();
+    return Pattern.compile("^([A-Za-z0-9_-]+)@([A-Za-z0-9_-]+)\\.([A-Za-z0-9_-]+)$").matcher(str).find();
   }
 
   public static boolean isIP(String str){
-    return  Pattern.compile("^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(str).find();
+    return  Pattern.compile("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(str).find();
   }
 
 

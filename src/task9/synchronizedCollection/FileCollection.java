@@ -21,32 +21,32 @@ public class FileCollection extends CollectionController<Book> {
     }
 
     public void outputToFile(String filePath) {
+        reentrantLock.lock();
         try {
-            reentrantLock.lock();
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file, false);
             fileWriter.write("" + Stream.of(collection.getArray()).filter(Objects::nonNull).count());
             Stream.of(collection.getArray()).filter(Objects::nonNull).forEach(x -> outputElementToFile(x,fileWriter));
             fileWriter.close();
-            reentrantLock.unlock();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        reentrantLock.unlock();
     }
 
     public void inputFormFile(String filePath) {
+        reentrantLock.lock();
         try {
-            reentrantLock.lock();
             File file = new File(filePath);
             FileReader fileReader = new FileReader(file);
             Scanner fileScanner = new Scanner(fileReader);
             int length = Integer.parseInt(fileScanner.nextLine());
             IntStream.range(0,length - 1).forEach(x -> addElement(readBookFromFile(fileScanner)));
             fileReader.close();
-            reentrantLock.unlock();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        reentrantLock.unlock();
     }
 
     private Book readBookFromFile(Scanner scanner) {
