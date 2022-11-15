@@ -9,21 +9,19 @@ public class Runner {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Главный поток начал выполнение");
         long time = System.nanoTime();
-        new MyRunnable(createRandomArray(SIZE), "file1.txt").run();
-        new MyRunnable(createRandomArray(SIZE), "file2.txt").run();
-        new MyRunnable(createRandomArray(SIZE), "file3.txt").run();
+        new MyRunnable(createRandomArray(SIZE),createRandomArray(SIZE), createRandomArray(SIZE), "file1.txt").run();
         time = System.nanoTime() - time;
         System.out.printf("Elapsed %,9.3f ms\n", time/1_000_000.0);
-        Thread thread1 = new Thread(new MyRunnable(createRandomArray(SIZE), "file1.txt"));
-        Thread thread2 = new Thread(new MyRunnable(createRandomArray(SIZE), "file2.txt"));
-        Thread thread3 = new Thread(new MyRunnable(createRandomArray(SIZE), "file3.txt"));
+        Thread thread1 = new Thread(new MyRunnable(createRandomArray(SIZE),createRandomArray(SIZE), createRandomArray(SIZE), "file1.txt"));
         time = System.nanoTime();
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        thread1.join();
-        thread2.join();
-        thread3.join();
+        Thread[] threads = new Thread[50];
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread(new MyRunnable(createRandomArray(SIZE),createRandomArray(SIZE), createRandomArray(SIZE), "file" + i + ".txt"), "file" + i + ".txt");
+            threads[i].start();
+        }
+        for (Thread thread : threads) {
+            thread.join();
+        }
         time = System.nanoTime() - time;
         System.out.printf("Elapsed %,9.3f ms\n", time/1_000_000.0);
         System.out.println("Главный поток закончил выполнение");
