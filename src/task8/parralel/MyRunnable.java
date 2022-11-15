@@ -1,22 +1,24 @@
 package task8.parralel;
 
-import lombok.AllArgsConstructor;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
-import static task2.ArrayTask.Runner.createRandomArray;
-import static task2.ArrayTask.Runner.numberOfTrue;
-@AllArgsConstructor
 public class MyRunnable implements Runnable {
     private int[] array1;
     private int[] array2;
     private int[] array3;
     private String fileName;
+
+    public MyRunnable(int[] array1, int[] array2, int[] array3, String fileName) {
+        this.array1 = array1;
+        this.array2 = array2;
+        this.array3 = array3;
+        this.fileName = fileName;
+    }
 
     @Override
     public void run() {
