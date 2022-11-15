@@ -2,7 +2,6 @@ package task8.parralel;
 
 import java.util.Arrays;
 
-import static task2.ArrayTask.Runner.createRandomArray;
 
 public class Runner {
     public final static int SIZE = 41;
@@ -25,6 +24,14 @@ public class Runner {
         time = System.nanoTime() - time;
         System.out.printf("Elapsed %,9.3f ms\n", time/1_000_000.0);
         System.out.println("Главный поток закончил выполнение");
+    }
+
+    public static int[] createRandomArray(int size){
+        int[] array = new int[size];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (int) (Math.random() * 100);
+        }
+        return array;
     }
 }
 
